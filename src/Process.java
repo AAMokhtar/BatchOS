@@ -5,7 +5,7 @@ public class Process extends Thread {
 	
 	public int processID;
     ProcessState status=ProcessState.New;	
-
+// z
 	
 	public Process(int m) {
 		processID = m;
