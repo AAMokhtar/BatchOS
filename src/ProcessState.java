@@ -1,5 +1,4 @@
-
-public enum ProcessState 
+public enum ProcessState
 {
 Ready, New,Waiting,Running,Terminated 
 }

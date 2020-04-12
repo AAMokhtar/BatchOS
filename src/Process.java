@@ -1,15 +1,13 @@
-//import java.util.concurrent.Semaphore;
-
-
 public class Process extends Thread {
 	
 	public int processID;
-    ProcessState status=ProcessState.New;	
+    ProcessState status = ProcessState.New;
 
 	
 	public Process(int m) {
 		processID = m;
 	}
+
 	@Override
 	public void run() {
 		
@@ -30,7 +28,7 @@ public class Process extends Thread {
 		OperatingSystem.printText(OperatingSystem.readFile(OperatingSystem.TakeInput()));
 		
 		setProcessState(this,ProcessState.Terminated);
-		}
+	}
 	
 	private void process2() {
 		
@@ -40,7 +38,8 @@ public class Process extends Thread {
 		String data= OperatingSystem.TakeInput();
 		OperatingSystem.writefile(filename,data);
 		setProcessState(this,ProcessState.Terminated);
-		}
+	}
+
 	private void process3() {
 		int x=0;
 		while (x<301)
@@ -49,7 +48,7 @@ public class Process extends Thread {
 			x++;
 		}
 		setProcessState(this,ProcessState.Terminated);
-		}
+	}
 	
 	private void process4() {
 	
@@ -60,7 +59,7 @@ public class Process extends Thread {
 			x++;
 		}	
 		setProcessState(this,ProcessState.Terminated);
-		}
+	}
 	private void process5() {
 		
 		OperatingSystem.printText("Enter LowerBound: ");

@@ -5,8 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.concurrent.Semaphore;
-
 
 public class OperatingSystem {
 	
@@ -56,10 +54,9 @@ public class OperatingSystem {
 	}
 	
 	//4- take input
-	
 	@SuppressWarnings("unused")
 	public static String TakeInput() {
-		Scanner in= new Scanner(System.in);
+		Scanner in = new Scanner(System.in);
 		String data = in.nextLine();
 		return data;
 		
