@@ -10,24 +10,32 @@ public class OperatingSystem {
 	
 	public static ArrayList<Thread> ProcessTable;
 
+	public static mutex inputMutex;
+	public static mutex writeMutex;
+
+	static {
+		inputMutex = new mutex();
+		writeMutex = new mutex();
+	}
+
 //	public static int activeProcess= 0;
 	//system calls:
 	// 1- Read from File
 	@SuppressWarnings("unused")
 	public static String readFile(String name) {
-		String Data="";
+		StringBuilder Data= new StringBuilder();
 		File file = new File(name);
 	 try {
 		Scanner scan = new Scanner(file);
 		while (scan.hasNextLine())
 		{
-			Data+= scan.nextLine()+"\n";
+			Data.append(scan.nextLine()).append("\n");
 		}
 		scan.close();
 	} catch (FileNotFoundException e) {
 		System.out.println(e.getMessage());
 	}
-		return Data;
+		return Data.toString();
 	}
 	
 	// 2- Write into file
@@ -57,8 +65,7 @@ public class OperatingSystem {
 	@SuppressWarnings("unused")
 	public static String TakeInput() {
 		Scanner in = new Scanner(System.in);
-		String data = in.nextLine();
-		return data;
+		return in.nextLine();
 		
 	}
 	
@@ -71,14 +78,13 @@ public class OperatingSystem {
 	}
 	
 	public static void main(String[] args) {
-   		ProcessTable = new ArrayList<Thread>();
+   		ProcessTable = new ArrayList<>();
 
 		createProcess(1);
 		createProcess(2);
 		createProcess(3);
 		createProcess(4);
 		createProcess(5);
-
 	}
 }
 
