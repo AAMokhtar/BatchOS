@@ -12,10 +12,14 @@ public class OperatingSystem {
 
 	public static mutex inputMutex;
 	public static mutex writeMutex;
-
+	public static mutex printMutex;
+	public static mutex readMutex;
+	
 	static {
 		inputMutex = new mutex();
 		writeMutex = new mutex();
+		printMutex = new mutex();
+		readMutex  = new mutex();
 	}
 
 //	public static int activeProcess= 0;
