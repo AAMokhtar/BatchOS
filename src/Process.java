@@ -18,12 +18,13 @@ public class Process extends Thread {
 	public void loop() { // process is blocked
 		flag.set(false);
 		while (!flag.get()) {
-			Thread.onSpinWait();
+
 		} // will wait until flag is set
 	}
 
 	@Override
 	public void run() {
+		OperatingSystem.setRun(false);
 		switch (processID) {
 		case 1:
 			process1();
@@ -47,14 +48,18 @@ public class Process extends Thread {
 		OperatingSystem.inputMutex.acquire(this);
 		OperatingSystem.printMutex.acquire(this);
 		OperatingSystem.readMutex.acquire(this);
-		
+
 		OperatingSystem.printText("Enter File Name: ");
 		OperatingSystem.printText(OperatingSystem.readFile(OperatingSystem.TakeInput()));
-		
+
 		OperatingSystem.printMutex.release(this);
 		OperatingSystem.readMutex.release(this);
 		OperatingSystem.inputMutex.release(this);
 		setProcessState(this, ProcessState.Terminated);
+	}
+
+	public String toString() {
+		return processID + "  " + status;
 	}
 
 	private void process2() {
@@ -62,7 +67,7 @@ public class Process extends Thread {
 		OperatingSystem.inputMutex.acquire(this);
 		OperatingSystem.printMutex.acquire(this);
 		OperatingSystem.printText("Enter File Name: ");
-		
+
 		String filename = OperatingSystem.TakeInput();
 		OperatingSystem.printText("Enter Data: ");
 		String data = OperatingSystem.TakeInput();
@@ -139,6 +144,8 @@ public class Process extends Thread {
 		p.status = s;
 		if (s == ProcessState.Terminated) {
 			OperatingSystem.ProcessTable.remove(p);
+			OperatingSystem.setRun(true);
+			OperatingSystem.Running();
 		}
 	}
 

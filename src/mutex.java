@@ -42,7 +42,6 @@ public class mutex {
 //            OperatingSystem.readyQueue.add(owner.get()); //put in the ready queue
             owner.get().flag.set(true); //set turn
         }
-
         else  owner.compareAndSet(p,null); //no owner
     }
 }
