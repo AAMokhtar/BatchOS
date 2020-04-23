@@ -2,6 +2,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicReference;
 
+//WARNING: IF YOU ARE RUNNING WITHOUT A SCHEDULER
+//REPLACE LINE 43 WITH LINE 46 IN THIS CLASS!!!
 public class mutex {
     Queue<Process> blocked; //blocked queue for that resource
 
@@ -34,13 +36,17 @@ public class mutex {
 
         //else
 
-        owner.get().flag.set(false);
         if (!blocked.isEmpty()){ //give the resource to the process that waited the longest
             owner.compareAndSet(p,blocked.poll()); //acquire the mutex
             Process.setProcessState(owner.get(),ProcessState.Ready); //ready state
 
-//            OperatingSystem.readyQueue.add(owner.get()); //put in the ready queue
-            owner.get().flag.set(true); //set turn
+            //if we use FCFS scheduler:
+                OperatingSystem.readyQ.add(owner.get()); //put in the ready queue
+
+            //if we use mutexes alone;
+//                owner.get().flag.set(true); //set turn
+
+
         }
         else  owner.compareAndSet(p,null); //no owner
     }

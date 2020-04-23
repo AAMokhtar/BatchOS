@@ -91,7 +91,10 @@ public class OperatingSystem {
 			if (p != null) {
 				setRun(false);
 				// System.out.println(p);
-				p.start();
+				if (!p.flag.get()) //continuing process
+					p.flag.set(true);
+				else //first time running
+					p.start();
 
 			}
 		}

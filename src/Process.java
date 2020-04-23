@@ -9,7 +9,7 @@ public class Process extends Thread {
 	 * flag to break out of the loop simulating the transition from the blocked
 	 * state to the running state
 	 */
-	AtomicBoolean flag = new AtomicBoolean(false);
+	AtomicBoolean flag = new AtomicBoolean(true);
 
 	public Process(int m) {
 		processID = m;
@@ -17,9 +17,7 @@ public class Process extends Thread {
 
 	public void loop() { // process is blocked
 		flag.set(false);
-		while (!flag.get()) {
-
-		} // will wait until flag is set
+		while (!flag.get()) {} // will wait until flag is set
 	}
 
 	@Override
