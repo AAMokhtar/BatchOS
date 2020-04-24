@@ -96,6 +96,7 @@ public class OperatingSystem {
 				else //first time running
 					p.start();
 
+				Process.setProcessState(p, ProcessState.Running);
 			}
 		}
 	}

@@ -2,8 +2,8 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.concurrent.atomic.AtomicReference;
 
-//WARNING: IF YOU ARE RUNNING WITHOUT A SCHEDULER
-//REPLACE LINE 43 WITH LINE 46 IN THIS CLASS!!!
+//WARNING: IF YOU ARE TESTING WITHOUT A SCHEDULER,
+//REPLACE LINE 44 WITH LINE 47 IN THIS CLASS!!!
 public class mutex {
     Queue<Process> blocked; //blocked queue for that resource
 
